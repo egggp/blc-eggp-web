@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import HttpException from '~/api/commons/httpException'
-import { API } from '~/types'
+import { API } from '~/types/api.type'
 
 export const errorHandler = (
   error: HttpException,

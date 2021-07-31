@@ -1,7 +1,8 @@
 import express, { Application } from 'express'
 import routes from '~/api/routes'
 import { errorHandler } from '~/api/middlewares/error.middleware'
-import { Server } from '~/types'
+import { Server } from '~/types/server.type'
+import '~/api/helpers/aws'
 
 const app: Application = express()
 

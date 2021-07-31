@@ -1,13 +1,14 @@
 import { Router } from 'express'
-import { createTable } from '~/api/db/modules/hello'
 import { failed, success } from '~/api/helpers/response'
+import Question from '~/api/models/question'
 
 const router = Router()
 
-router.get('/', async (_, res) => {
+router.get('/', async (_req, res) => {
   try {
-    const asd = await createTable()
-    success(res, { message: asd })
+    // const question = new Question({ itemKey: 'Hello World!', text: 'Hello World!!' })
+    const result = await Question.query().exec()
+    success(res, result)
   } catch (e) {
     failed(res, e)
   }
