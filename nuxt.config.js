@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
-const appUrl = 'https://dev.eggplantiny.com'
+const appUrl = 'https://blc.eggp.io'
 const port = isDevelopment ? 3000 : 9000
 
 function useProxy () {
@@ -113,5 +113,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  extensions: ['ts']
 }

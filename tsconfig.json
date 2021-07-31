@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "lib": [
       "ESNext",
       "ESNext.AsyncIterable",
@@ -13,8 +13,6 @@
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -25,14 +23,13 @@
       ]
     },
     "types": [
+      "@types/node",
       "@nuxt/types",
-      "@nuxtjs/axios",
-      "@types/node"
+      "@types/express",
+      "./types"
     ]
   },
   "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist"
+    "node_modules"
   ]
 }

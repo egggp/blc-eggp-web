@@ -1,4 +1,4 @@
-import hello from './modules/hello'
+import hello from '~/api/routes/modules/hello'
 
 import { Server } from '~/types'
 
