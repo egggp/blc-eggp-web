@@ -1,13 +1,13 @@
-import dynamoose from 'dynamoose'
+import { Schema } from 'dynamoose'
 
-export const ImageSchema = new dynamoose.Schema({
+export const ImageSchema = new Schema({
   name: String,
   mimetype: String,
   size: Number,
   url: String
 })
 
-export const ImageInfoSchema = new dynamoose.Schema({
+export const ImageInfoSchema = new Schema({
   original: ImageSchema,
   low: ImageSchema,
   thumbnail: ImageSchema

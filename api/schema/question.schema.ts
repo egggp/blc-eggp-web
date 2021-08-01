@@ -1,7 +1,7 @@
-import dynamoose from 'dynamoose'
+import { Schema } from 'dynamoose'
 import { ImageInfoSchema } from '~/api/schema/image.schema'
 
-export const SelectionSchema = new dynamoose.Schema({
+export const SelectionSchema = new Schema({
   title: String,
   description: String,
   selectRate: Number,
@@ -11,14 +11,14 @@ export const SelectionSchema = new dynamoose.Schema({
   }
 })
 
-export const AdditionalInfoSchema = new dynamoose.Schema({
+export const AdditionalInfoSchema = new Schema({
   commentSize: Number,
   goodRate: Number,
   badRate: Number,
   viewRate: Number
 })
 
-export const QuestionSchema = new dynamoose.Schema({
+export const QuestionSchema = new Schema({
   itemKey: {
     type: String,
     hashKey: true

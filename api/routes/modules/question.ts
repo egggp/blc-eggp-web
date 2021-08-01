@@ -1,17 +1,37 @@
 import { Router } from 'express'
-import { body, validationResult } from 'express-validator'
+import { body, param, validationResult } from 'express-validator'
 import { generateKey } from '~/api/helpers/gen'
 import { success } from '~/api/helpers/response'
 import { Model } from '~/types/model.type'
 import Question from '~/api/models/question'
 import wrapAsync from '~/api/middlewares/async.middleware'
 import ParamsError from '~/api/errors/params.error'
+import EmptyError from '~/api/errors/empty.error'
 
 const router = Router()
 
 router.get('/', wrapAsync(
   async (_, res) => {
     const result = await Question.scan().all().exec()
+    success(res, result)
+  })
+)
+
+router.get('/:itemKey',
+  [param('itemKey').exists()],
+  wrapAsync(async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      throw new ParamsError(errors)
+    }
+
+    const { itemKey } = req.params
+
+    const result = await Question.get(itemKey)
+    if (!result) {
+      throw new EmptyError(itemKey)
+    }
+
     success(res, result)
   })
 )
