@@ -8,9 +8,11 @@ const app: Application = express()
 
 //  Body Parser
 app.use(express.json())
-app.use(errorHandler)
 
 //  Router
 routes.forEach((route: Server.IRoute) => app.use(`/${route.name}`, route.router))
+
+//  Error Handler
+app.use(errorHandler)
 
 export default app

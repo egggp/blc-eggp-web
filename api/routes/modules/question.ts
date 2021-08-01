@@ -1,47 +1,56 @@
 import { Router } from 'express'
-import { failed, success } from '~/api/helpers/response'
+import { body, validationResult } from 'express-validator'
 import { generateKey } from '~/api/helpers/gen'
+import { success } from '~/api/helpers/response'
 import { Model } from '~/types/model.type'
 import Question from '~/api/models/question'
+import wrapAsync from '~/api/middlewares/async.middleware'
+import ParamsError from '~/api/errors/params.error'
 
 const router = Router()
 
-router.get('/', async (_req, res) => {
-  try {
+router.get('/', wrapAsync(
+  async (_, res) => {
     const result = await Question.scan().all().exec()
     success(res, result)
-  } catch (e) {
-    failed(res, e)
-  }
-})
+  })
+)
 
-router.post('/', async (req, res) => {
-  const { title, itemA, itemB, tags } = req.body
-  const itemKey = generateKey()
-
-  const item: Model.Question = {
-    itemKey,
-    itemA,
-    itemB,
-    title,
-    tags,
-    additionalInfo: {
-      commentSize: 0,
-      goodRate: 0,
-      badRate: 0,
-      viewRate: 0
+router.post('/', [
+  body('title').exists(),
+  body('itemA').exists(),
+  body('itemB').exists(),
+  body('tags').exists()
+], wrapAsync(
+  async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      throw new ParamsError(errors)
     }
-  }
 
-  try {
+    const { title, itemA, itemB, tags } = req.body
+    const itemKey = generateKey()
+
+    const item: Model.Question = {
+      itemKey,
+      itemA,
+      itemB,
+      title,
+      tags,
+      additionalInfo: {
+        commentSize: 0,
+        goodRate: 0,
+        badRate: 0,
+        viewRate: 0
+      }
+    }
+
     const question = new Question(item)
     const result = await question.save()
 
     success(res, result)
-  } catch (e) {
-    failed(res, e)
-  }
-})
+  })
+)
 
 export default {
   name: 'question',
