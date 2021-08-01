@@ -1,11 +1,9 @@
-import hello from '~/api/routes/modules/hello'
-import category from '~/api/routes/modules/category'
+import question from '~/api/routes/modules/question'
 
 import { Server } from '~/types/server.type'
 
 const routes: Server.IRoute[] = [
-  hello,
-  category
+  question
 ]
 
 export default routes

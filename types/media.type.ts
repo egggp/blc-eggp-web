@@ -13,7 +13,7 @@ export declare namespace Media {
   interface VideoInfo extends Media {
   }
 
-  interface Image {
+  interface ImageInfo {
     original: Image
     low: Image
     thumbnail: Image

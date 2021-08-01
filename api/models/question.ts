@@ -1,19 +1,7 @@
 import dynamoose from 'dynamoose'
 import { DocumentModel } from '~/types/documentModel.type'
+import { QuestionSchema } from '~/api/schema/question.schema'
 
-const questionSchema = new dynamoose.Schema({
-  itemKey: {
-    type: String,
-    hashKey: true
-  },
-  text: String
-}, {
-  timestamps: {
-    createdAt: ['createdAt'],
-    updatedAt: ['updatedAt']
-  }
-})
-
-const Question = dynamoose.model<DocumentModel.Question>('blg.eggp.question', questionSchema)
+const Question = dynamoose.model<DocumentModel.Question>('blg.eggp.question', QuestionSchema)
 
 export default Question

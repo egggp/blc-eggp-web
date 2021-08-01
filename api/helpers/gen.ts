@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid'
 
 export function generateKey () {
-  return uuid()
+  return uuid().split('-').join('')
 }

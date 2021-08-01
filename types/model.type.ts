@@ -1,10 +1,27 @@
+import { Media } from '~/types/media.type'
+
 export declare namespace Model {
+  interface Selection {
+    title: string
+    description: string
+    selectRate: number
+    image?: Media.Image
+  }
+
+  interface AdditionalInfo {
+    commentSize: number
+    goodRate: number
+    badRate: number
+    viewRate: number
+  }
+
   interface Question {
     itemKey: string
     title: string
-    description: string
-    category: string
     tags: string[]
+    itemA: Selection
+    itemB: Selection,
+    additionalInfo: AdditionalInfo
   }
 
   interface Category {
@@ -12,7 +29,7 @@ export declare namespace Model {
   }
 
   interface Tag {
-    itemKey: string
-    value: string
+    text: string
+    size: number
   }
 }
