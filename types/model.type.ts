@@ -32,4 +32,13 @@ export declare namespace Model {
     text: string
     size: number
   }
+
+  interface User {
+    userKey: string
+    userId: string
+    password: string
+    userName: string
+    completed: boolean
+    profileImage?: Media.ImageInfo
+  }
 }
