@@ -35,9 +35,10 @@ export declare namespace Model {
 
   interface User {
     userKey: string
-    password: string
     userId: string
+    password: string
     userName: string
-    profileImage?: Media.Image
+    completed: boolean
+    profileImage?: Media.ImageInfo
   }
 }
