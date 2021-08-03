@@ -27,6 +27,8 @@
       "@nuxtjs/axios",
       "@nuxt/types",
       "@types/express",
+      "@types/passport",
+      "@types/passport-local",
       "./types/**"
     ]
   },
