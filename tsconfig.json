@@ -29,6 +29,7 @@
       "@types/express",
       "@types/passport",
       "@types/passport-local",
+      "@types/bcrypt",
       "./types/**"
     ]
   },
