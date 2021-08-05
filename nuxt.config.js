@@ -87,7 +87,20 @@ export default {
 
   auth: {
     strategires: {
-      local: true
+      local: {
+        token: {
+          property: 'result',
+          global: true
+        },
+        user: {
+          property: 'result'
+        },
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post' },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get' }
+        }
+      }
     }
   },
 
