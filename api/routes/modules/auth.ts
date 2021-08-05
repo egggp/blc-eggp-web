@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { body, validationResult } from 'express-validator'
 import passport from 'passport'
 
-import { failed, success } from '~/api/helpers/response'
+import { success } from '~/api/helpers/response'
 import { Model } from '~/types/model.type'
 import { AlreadyUsingUserIdError, NoUserIdError } from '~/api/errors/auth.error'
 import wrapAsync from '~/api/middlewares/async.middleware'

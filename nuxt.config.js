@@ -74,12 +74,21 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://auth.nuxtjs.org/
+    '@nuxtjs/auth-next',
+
     'vuetify-dialog/nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     proxy: useProxy()
+  },
+
+  auth: {
+    strategires: {
+      local: true
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
