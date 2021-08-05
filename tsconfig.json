@@ -29,6 +29,7 @@
       "@types/express",
       "@types/passport",
       "@types/passport-local",
+      "@types/passport-jwt",
       "@types/bcrypt",
       "@types/jsonwebtoken",
       "@types/jest",

@@ -6,7 +6,7 @@ export class AlreadyUsingUserIdError extends HttpError {
   }
 }
 
-export class NoUserIdError extends HttpError {
+export class NoUserError extends HttpError {
   constructor () {
     super(401, '사용자 정보를 찾을 수 없습니다.')
   }
