@@ -86,14 +86,15 @@ export default {
   },
 
   auth: {
-    strategires: {
+    strategies: {
       local: {
         token: {
           property: 'result',
           global: true
         },
         user: {
-          property: 'result'
+          property: 'result',
+          authFetch: true
         },
         endpoints: {
           login: { url: '/api/auth/login', method: 'post' },

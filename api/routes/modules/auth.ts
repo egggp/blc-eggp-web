@@ -39,7 +39,7 @@ router.get('/user', [authenticateWithJWT], wrapAsync(
     if (!user) {
       throw new NoUserError()
     }
-    await success(res, user)
+    await success(res, reverseProjection(user, ['password']))
   }
 ))
 
