@@ -37,6 +37,8 @@ export declare namespace Model {
     userId: string
     userName: string
     completed: boolean
+    rules: Array<string>
+    auth: string
     password?: string
     profileImage?: Media.ImageInfo
   }

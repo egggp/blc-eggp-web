@@ -9,6 +9,11 @@ export const UserSchema = new Schema({
   password: String,
   userName: String,
   completed: Boolean,
+  auth: String,
+  rules: {
+    type: Array,
+    schema: [String]
+  },
   profileImage: {
     type: Object,
     schema: ImageInfoSchema
