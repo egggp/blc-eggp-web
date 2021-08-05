@@ -90,10 +90,8 @@ export default defineComponent({
 
       const { userId, password } = models
       try {
-        const result = await context.$axios.$post('/api/auth/login', {
-          userId, password
-        })
-        console.log(result)
+        const result = await context.$auth.loginWith('local', { data: { userId, password } })
+        console.log('success', result)
       } catch (e) {
         console.log(e)
       }
