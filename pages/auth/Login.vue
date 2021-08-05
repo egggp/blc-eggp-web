@@ -66,6 +66,7 @@ import {
 
 export default defineComponent({
   name: 'Login',
+  auth: 'guest',
   setup () {
     const form = ref()
     const context = useContext()

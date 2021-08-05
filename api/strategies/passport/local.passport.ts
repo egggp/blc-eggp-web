@@ -13,15 +13,15 @@ const LocalStrategy = new Strategy({
   try {
     userInfo = await User.get(userId)
   } catch (e) {
-    return done(null, false, { message: 'internal server error' })
+    return done(null, null, { message: 'internal server error' })
   }
 
   if (!userInfo) {
-    return done(null, false, { message: '유저정보를 찾을 수 없습니다.' })
+    return done(null, null, { message: '유저정보를 찾을 수 없습니다.' })
   }
 
   if (!comparePassword(password, userInfo.password || '')) {
-    return done(null, false, { message: '올바르지 않은 비밀번호 입니다.' })
+    return done(null, null, { message: '올바르지 않은 비밀번호 입니다.' })
   }
 
   return done(null, {

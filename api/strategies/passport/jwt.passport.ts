@@ -19,7 +19,7 @@ const JwtStrategy = new Strategy(JWTConfig, async (jwtPayload, done) => {
   try {
     userInfo = await User.get(jwtPayload.userId)
   } catch (e) {
-    return done(null, false, { message: '올바르지 않은 인증정보입니다.' })
+    return done(null, null, { message: '올바르지 않은 인증정보입니다.' })
   }
 
   return done(null, userInfo)
