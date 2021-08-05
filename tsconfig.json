@@ -30,6 +30,8 @@
       "@types/passport",
       "@types/passport-local",
       "@types/bcrypt",
+      "@types/jsonwebtoken",
+      "@types/jest",
       "./types/**"
     ]
   },
