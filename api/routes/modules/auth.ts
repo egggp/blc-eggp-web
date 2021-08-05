@@ -1,16 +1,20 @@
 import { Router } from 'express'
 import { body, validationResult } from 'express-validator'
 import passport from 'passport'
+import jwt from 'jsonwebtoken'
 
-import { failed, success } from '~/api/helpers/response'
+import { success } from '~/api/helpers/response'
 import { Model } from '~/types/model.type'
 import { AlreadyUsingUserIdError, NoUserIdError } from '~/api/errors/auth.error'
 import wrapAsync from '~/api/middlewares/async.middleware'
 import User from '~/api/models/user'
 import ParamsError from '~/api/errors/params.error'
 import { generatePassword } from '~/api/helpers/password'
+import { projection, reverseProjection } from '~/api/helpers/object'
 
 const router = Router()
+
+const JWT_KEY = process.env.JWT_KEY || ''
 
 router.get('/check/:userId', wrapAsync(
   async (req, res) => {
@@ -42,7 +46,11 @@ router.post('/login', function (req, res, next) {
       if (loginErr) {
         return next(loginErr)
       }
-      return success(res, user)
+      const token = jwt.sign(
+        projection(user, ['userId', 'auth']),
+        JWT_KEY
+      )
+      return success(res, { token })
     })
   })(req, res, next)
 })
@@ -70,6 +78,8 @@ router.post('/signup', [
     const item: Model.User = {
       userId,
       userName,
+      rules: ['USER'],
+      auth: 'USER',
       password: hashedPassword,
       completed: false
     }
@@ -77,7 +87,7 @@ router.post('/signup', [
     const user = new User(item)
     const result = await user.save()
 
-    success(res, result)
+    success(res, reverseProjection(result, ['password']))
   }
 ))
 
