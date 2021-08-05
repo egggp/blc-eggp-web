@@ -5,16 +5,17 @@ import jwt from 'jsonwebtoken'
 
 import { success } from '~/api/helpers/response'
 import { Model } from '~/types/model.type'
-import { AlreadyUsingUserIdError, NoUserIdError } from '~/api/errors/auth.error'
+import { AlreadyUsingUserIdError, NoUserError } from '~/api/errors/auth.error'
 import wrapAsync from '~/api/middlewares/async.middleware'
 import User from '~/api/models/user'
 import ParamsError from '~/api/errors/params.error'
 import { generatePassword } from '~/api/helpers/password'
 import { projection, reverseProjection } from '~/api/helpers/object'
+import { authenticateWithJWT } from '~/api/middlewares/auth.middleware'
 
 const router = Router()
 
-const JWT_KEY = process.env.JWT_KEY || ''
+const JWT_SECRET = process.env.JWT_SECRET || ''
 
 router.get('/check/:userId', wrapAsync(
   async (req, res) => {
@@ -25,12 +26,22 @@ router.get('/check/:userId', wrapAsync(
     })
 
     if (!userInfo) {
-      throw new NoUserIdError()
+      throw new NoUserError()
     }
 
     success(res, userInfo)
   })
 )
+
+router.get('/user', [authenticateWithJWT], wrapAsync(
+  async (req, res) => {
+    const user = req.user
+    if (!user) {
+      throw new NoUserError()
+    }
+    await success(res, user)
+  }
+))
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user) {
@@ -39,7 +50,7 @@ router.post('/login', function (req, res, next) {
     }
 
     if (!user) {
-      return next(new NoUserIdError())
+      return next(new NoUserError())
     }
 
     req.login(user, (loginErr) => {
@@ -48,9 +59,9 @@ router.post('/login', function (req, res, next) {
       }
       const token = jwt.sign(
         projection(user, ['userId', 'auth']),
-        JWT_KEY
+        JWT_SECRET
       )
-      return success(res, { token })
+      return success(res, token)
     })
   })(req, res, next)
 })
