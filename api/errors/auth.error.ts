@@ -2,12 +2,12 @@ import HttpError from '~/api/errors/http.error'
 
 export class AlreadyUsingUserIdError extends HttpError {
   constructor (userId: string) {
-    super(400, `user id [${userId}] is already using.`)
+    super(400, `[${userId}] 는 이미 사용중인 아이디 입니다.`)
   }
 }
 
 export class NoUserIdError extends HttpError {
-  constructor (userId: string) {
-    super(400, `user id [${userId}] is not registered.`)
+  constructor () {
+    super(401, '사용자 정보를 찾을 수 없습니다.')
   }
 }

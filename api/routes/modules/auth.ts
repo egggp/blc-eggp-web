@@ -21,7 +21,7 @@ router.get('/check/:userId', wrapAsync(
     })
 
     if (!userInfo) {
-      throw new NoUserIdError(userId)
+      throw new NoUserIdError()
     }
 
     success(res, userInfo)
@@ -29,13 +29,13 @@ router.get('/check/:userId', wrapAsync(
 )
 
 router.post('/login', function (req, res, next) {
-  passport.authenticate('local', function (err, user, info) {
+  passport.authenticate('local', function (err, user) {
     if (err) {
       return next(err)
     }
 
     if (!user) {
-      return failed(res, { message: info.message })
+      return next(new NoUserIdError())
     }
 
     req.login(user, (loginErr) => {
