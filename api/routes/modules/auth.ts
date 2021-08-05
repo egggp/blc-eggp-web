@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { body, validationResult } from 'express-validator'
 import passport from 'passport'
 
-import { success } from '~/api/helpers/response'
+import { failed, success } from '~/api/helpers/response'
 import { Model } from '~/types/model.type'
 import { AlreadyUsingUserIdError, NoUserIdError } from '~/api/errors/auth.error'
 import wrapAsync from '~/api/middlewares/async.middleware'
@@ -28,17 +28,24 @@ router.get('/check/:userId', wrapAsync(
   })
 )
 
-router.post('/login',
-  passport.authenticate('local'),
-  wrapAsync(
-    async (req, res) => {
-      if (!req.user) {
-        throw new Error('failed login')
-      }
-      await success(res, req.user)
+router.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err)
     }
-  )
-)
+
+    if (!user) {
+      return failed(res, { message: info.message })
+    }
+
+    req.login(user, (loginErr) => {
+      if (loginErr) {
+        return next(loginErr)
+      }
+      return success(res, user)
+    })
+  })(req, res, next)
+})
 
 router.post('/signup', [
   body('userId').exists(),
