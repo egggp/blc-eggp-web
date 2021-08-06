@@ -3,8 +3,10 @@ import passport from 'passport'
 import routes from '~/api/routes'
 import { errorHandler } from '~/api/middlewares/error.middleware'
 import { Server } from '~/types/server.type'
-import '~/api/helpers/aws'
+
+//  Plugins
 import '~/api/plugins/passport'
+import '~/api/plugins/aws.plugin'
 
 const app: Application = express()
 
