@@ -24,9 +24,10 @@
     },
     "types": [
       "@types/node",
+      "vuetify-dialog/types",
+      "@nuxt/types",
       "@nuxtjs/axios",
       "@nuxtjs/auth-next",
-      "@nuxt/types",
       "@types/express",
       "@types/passport",
       "@types/passport-local",
@@ -38,6 +39,8 @@
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".nuxt",
+    "dist"
   ]
 }
