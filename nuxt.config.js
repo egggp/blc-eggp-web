@@ -76,7 +76,7 @@ export default {
     '@nuxtjs/pwa',
     // https://auth.nuxtjs.org/
     '@nuxtjs/auth-next',
-
+    // https://github.com/yariksav/vuetify-dialog
     'vuetify-dialog/nuxt'
   ],
 
@@ -133,12 +133,12 @@ export default {
   //  Vuetify Dialog: https://github.com/yariksav/vuetify-dialog#readme
   vuetifyDialog: {
     property: '$dialog'
-  },
+  }
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    transpile: [/@nuxtjs[\\/]composition-api/]
-  },
+  // build: {
+  //   transpile: [/@nuxtjs[\\/]composition-api/]
+  // },
 
-  extensions: ['ts']
+  // extensions: ['ts']
 }

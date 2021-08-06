@@ -91,10 +91,9 @@ export default defineComponent({
 
       const { userId, password } = models
       try {
-        const result = await context.$auth.loginWith('local', { data: { userId, password } })
-        console.log('success', result)
+        await context.$auth.loginWith('local', { data: { userId, password } })
       } catch (e) {
-        console.log(e)
+        await context.$dialog.notify.error('아이디와 비밀번호를 확인해주세요.')
       }
     }
 
