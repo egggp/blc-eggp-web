@@ -21,30 +21,40 @@ export const AdditionalInfoSchema = new Schema({
 export const QuestionSchema = new Schema({
   itemKey: {
     type: String,
-    hashKey: true
+    hashKey: true,
+    required: true
   },
   title: {
     type: String,
     index: {
       global: true,
       name: 'titleIndex'
-    }
+    },
+    required: true
   },
   itemA: {
     type: Object,
-    schema: SelectionSchema
+    schema: SelectionSchema,
+    required: true
   },
   itemB: {
     type: Object,
-    schema: SelectionSchema
+    schema: SelectionSchema,
+    required: true
   },
   additionalInfo: {
     type: Object,
-    schema: AdditionalInfoSchema
+    schema: AdditionalInfoSchema,
+    required: true
   },
   tags: {
     type: Array,
-    schema: [String]
+    schema: [String],
+    required: true
+  },
+  image: {
+    type: Object,
+    schema: ImageInfoSchema
   }
 }, {
   timestamps: {

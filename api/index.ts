@@ -5,7 +5,7 @@ import { errorHandler } from '~/api/middlewares/error.middleware'
 import { Server } from '~/types/server.type'
 
 //  Plugins
-import '~/api/plugins/passport'
+import '~/api/plugins/passport.plugin'
 import '~/api/plugins/aws.plugin'
 
 const app: Application = express()

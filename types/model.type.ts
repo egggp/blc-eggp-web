@@ -5,7 +5,7 @@ export declare namespace Model {
     title: string
     description: string
     selectRate: number
-    image?: Media.Image
+    image?: Media.ImageInfo
   }
 
   interface AdditionalInfo {
@@ -22,6 +22,7 @@ export declare namespace Model {
     itemA: Selection
     itemB: Selection,
     additionalInfo: AdditionalInfo
+    image?: Media.ImageInfo
   }
 
   interface Category {

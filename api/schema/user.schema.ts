@@ -12,7 +12,8 @@ export const UserSchema = new Schema({
   auth: String,
   rules: {
     type: Array,
-    schema: [String]
+    schema: [String],
+    required: true
   },
   profileImage: {
     type: Object,
