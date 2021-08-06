@@ -29,6 +29,7 @@
       "@nuxtjs/axios",
       "@nuxtjs/auth-next",
       "@types/express",
+      "@types/morgan",
       "@types/passport",
       "@types/passport-local",
       "@types/passport-jwt",

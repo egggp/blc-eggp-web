@@ -7,6 +7,7 @@ import Question from '~/api/models/question'
 import wrapAsync from '~/api/middlewares/async.middleware'
 import ParamsError from '~/api/errors/params.error'
 import EmptyError from '~/api/errors/empty.error'
+import { isAuthenticated } from '~/api/middlewares/auth.middleware'
 
 const router = Router()
 
@@ -40,7 +41,8 @@ router.post('/', [
   body('title').exists(),
   body('itemA').exists(),
   body('itemB').exists(),
-  body('tags').exists()
+  body('tags').exists(),
+  isAuthenticated
 ], wrapAsync(
   async (req, res) => {
     const errors = validationResult(req)

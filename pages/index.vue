@@ -7,7 +7,7 @@
         </v-card-title>
         <v-card-actions>
           <v-spacer />
-          <v-btn>
+          <v-btn to="/question/add">
             Hello World
           </v-btn>
         </v-card-actions>

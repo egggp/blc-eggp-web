@@ -11,3 +11,9 @@ export class NoUserError extends HttpError {
     super(401, '사용자 정보를 찾을 수 없습니다.')
   }
 }
+
+export class NotAuthenticated extends HttpError {
+  constructor () {
+    super(403, '로그인이 되어있지 않습니다.')
+  }
+}

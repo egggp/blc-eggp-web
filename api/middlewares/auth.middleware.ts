@@ -1,12 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 import passport from 'passport'
+import { NotAuthenticated } from '~/api/errors/auth.error'
 
-export function isAuthenticated (req: Request, res: Response, next: NextFunction) {
+export function isAuthenticated (req: Request, _res: Response, next: NextFunction) {
   if (req.isAuthenticated()) {
     return next()
   }
 
-  res.redirect('/')
+  return next(new NotAuthenticated())
 }
 
 export function authenticateWithJWT (req: Request, res: Response, next: NextFunction) {

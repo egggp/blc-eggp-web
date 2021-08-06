@@ -66,6 +66,15 @@ router.post('/login', function (req, res, next) {
   })(req, res, next)
 })
 
+router.post('/logout',
+  wrapAsync(async (req, res) => {
+    if (req.user) {
+      req.logout()
+    }
+    await success(res, null)
+  })
+)
+
 router.post('/signup', [
   body('userId').exists(),
   body('password').exists(),

@@ -12,7 +12,7 @@
         <v-btn
           v-if="!loggedIn"
           text
-          to="/auth/login"
+          to="/login"
           class="rounded-lg"
         >
           로그인
