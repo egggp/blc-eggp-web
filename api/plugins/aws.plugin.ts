@@ -13,7 +13,3 @@ dynamoose.aws.sdk.config.update({
   region,
   ...credentials
 })
-
-export const s3 = new AWS.S3()
-export const ddb = new AWS.DynamoDB()
-export const documentClient = new AWS.DynamoDB.DocumentClient()
